@@ -7,6 +7,15 @@ $.getJSON('/articles', function(data) {
     }
 });
 
+//button to scrape
+$(document).on('click', '#scrapeButton', function() {
+    $.ajax({
+        method: "GET",
+        url: "/scrape"
+    }).done(function(data) {
+        console.log(data);
+    });
+});
 
 //when you click a <p>
 $(document).on('click', 'p', function() {
@@ -22,7 +31,7 @@ $(document).on('click', 'p', function() {
             url: "/articles/" + thisId
         })
         .done(function(data) {
-            console.log(data);
+
             //title of the article
             $("#comments").append("<h2>" + data[0].title + "<h2>");
             //input for new title
@@ -36,7 +45,7 @@ $(document).on('click', 'p', function() {
             if (data[0].comments) {
                 //place title of comment in title input
                 $('#titleinput').val(data[0].comments.title);
-                //place body fo the comment in the body text area
+                //place body for the comment in the body text area
                 $('#bodyinput').val(data[0].comments.body);
             }
         });
@@ -46,9 +55,8 @@ $(document).on('click', 'p', function() {
 $(document).on("click", "#savecomment", function() {
 
     var thisId = $(this).attr("data-id");
-    console.log("save button works");
 
-    //run a POST request to change the note
+    //run a POST request to change the comment
     $.ajax({
             method: "POST",
             url: "/articles/" + thisId,

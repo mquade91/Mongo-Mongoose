@@ -1,9 +1,42 @@
-Step 1: Get it scraping
+Step 1: Get it scraping(not when I want it to, and then saves all to DB????)
+
 Step 2: push scraped data to MongoDB (**need to do** 20 at a time)
+this works just not how i want
+
 Step 3: Display MongoDB data onto page
+-this works
+
+
 Step 4: grab articles to write comments on specific one
+this works
+
+
 Step 5: Display article with comments
+I have the JSON just dont know how to get it??
+
+
 Step 6: Delete Comment
+-no idea how to do?
+
 Step:7  Delete Article
+-only way I know how is through CLI
+-how to I put into code?
+
+Each time i scrape articles are saved to DB(over and over again_, (how do i limit to 20?)
+button does not work, then all articles scraped appear on page and have to delete collection 'articles'
+to be able to test scrape button
+then HW asks us to save specific articles after they have already been saved?
+
+How do i display comments for a specific article?
+-need to delete comments on that article 
+-need to delete Article itself
 
 
+How do i delete comments from a specific article?
+
+
+Whenever a user visits your site, the app should scrape stories from a news outlet of your choice and display them for the user. 
+Each scraped article should be saved to your application database. 
+
+
+i can pull articles, comments with specific articles all in JSON 

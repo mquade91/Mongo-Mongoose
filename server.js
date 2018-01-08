@@ -29,7 +29,7 @@ app.use(express.static("public"));
 //set ongoose to leverage built in JS ES6 promises
 //connect to MongoDB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/week18Populater", {
+mongoose.connect("mongodb://localhost/scrapeApp", {
     useMongoClient: true
 });
 
@@ -59,12 +59,13 @@ app.get("/scrape", function(req, res) {
             db.Article
                 .create(result)
                 .then(function(dbArticle) {
-
+                    console.log(dbArticle);
                 })
                 .catch(function(err) {
                     res.json(err);
                 });
         });
+        res.redirect("/articles");
     });
     res.send("scrape done");
 });
@@ -80,6 +81,7 @@ app.get("/articles", function(req, res) {
         }
     });
 });
+
 //route for grabbing a specific Article by id, populate with comment
 app.get("/articles/:id", function(req, res) {
     db.Article.find({ "_id": req.params.id })
@@ -92,7 +94,21 @@ app.get("/articles/:id", function(req, res) {
         });
 });
 
-//route for saving/updating an Articles associated Comment
+//***NOT WORKING YET******
+//route to GET SAVED ARTICLES by id, populate with comment
+app.get("/saved", function(req, res) {
+    db.Article.find({ "saved": true })
+        .populate('comments')
+        .then(function(savedArticles) {
+            res.json(savedArticles);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
+
+
+//route for savingan Articles associated Comment
 app.post("/articles/:id", function(req, res) {
     console.log(req.body);
     db.Comment
@@ -104,6 +120,17 @@ app.post("/articles/:id", function(req, res) {
         });
     res.send("done");
 });
+
+
+//***NOT WORKING YET******
+
+//code used to update if Article is SAVED or NOT SAVED
+// app.post("/articles/:id", function(req, res) {
+//     db.Article.findOneAndUpdate({ "_id": req.params.id }, { $set: { saved: true } });
+// });
+
+
+
 
 //start the server
 app.listen(PORT, function() {
