@@ -11,6 +11,7 @@ $.getJSON('/articles', function(data) {
 //when you click a <p>
 $(document).on('click', 'p', function() {
     //empty comments from comment section
+
     $("#comments").empty();
     //save the id from the <p>
     var thisId = $(this).attr("data-id");
@@ -45,6 +46,7 @@ $(document).on('click', 'p', function() {
 $(document).on("click", "#savecomment", function() {
 
     var thisId = $(this).attr("data-id");
+    console.log("save button works");
 
     //run a POST request to change the note
     $.ajax({

@@ -59,13 +59,14 @@ app.get("/scrape", function(req, res) {
             db.Article
                 .create(result)
                 .then(function(dbArticle) {
-                    res.send("scrape done");
+
                 })
                 .catch(function(err) {
                     res.json(err);
                 });
         });
     });
+    res.send("scrape done");
 });
 
 ///route for getting all the articles from the db
@@ -93,16 +94,15 @@ app.get("/articles/:id", function(req, res) {
 
 //route for saving/updating an Articles associated Comment
 app.post("/articles/:id", function(req, res) {
+    console.log(req.body);
     db.Comment
+
         .create(req.body)
         .then(function(data) {
-            return db.Article.findOneAndUpdate({ "_id": req.params.id }, { $push: { notes: data._id } }, { new: true });
+            console.log(data);
+            return db.Article.findOneAndUpdate({ "_id": req.params.id }, { $push: { comments: data._id } }, { new: true });
         });
     res.send("done");
-    //TODO
-    //save the new comment that gets to the Comments collection
-    //then find an article from req.params.id
-    //and update its "comment" property with the _id of the new comment
 });
 
 //start the server
