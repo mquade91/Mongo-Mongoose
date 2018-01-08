@@ -1,0 +1,9 @@
+Step 1: Get it scraping
+Step 2: push scraped data to MongoDB (20 at a time)
+Step 3: Display MongoDB data onto page
+Step 4: grab articles to write comments on specific one
+Step 5: Display article with comments
+Step 6: Delete Comment
+Step:7  Delete Article
+
+
