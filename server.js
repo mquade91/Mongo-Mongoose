@@ -94,7 +94,7 @@ app.get("/articles/:id", function(req, res) {
         });
 });
 
-//***NOT WORKING YET******
+
 //route to GET SAVED ARTICLES by id, populate with comment
 app.get("/saved", function(req, res) {
     db.Article.find({ "saved": true })
@@ -112,7 +112,6 @@ app.get("/saved", function(req, res) {
 app.post("/articles/:id", function(req, res) {
     console.log(req.body);
     db.Comment
-
         .create(req.body)
         .then(function(data) {
             console.log(data);
