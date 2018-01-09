@@ -79,6 +79,7 @@ $(document).on("click", "#savecomment", function() {
 
 // When user clicks the weight sort button, display table sorted by weight
 $("#get-saved").on("click", function() {
+    $("#saved").empty();
     // Do an api call to the back end for json with all ARTICLES that have
     //been SAVED
     $.ajax({
@@ -88,14 +89,17 @@ $("#get-saved").on("click", function() {
         .done(function(data) {
             console.log("you clicked save");
             console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                // //title of the article
+                $("#saved").append("<h2>Saved Articles</h2><br>" + "<p>Title: " + data[0].title + "<p>");
+                // comments
+                $("#saved").append("<p>Comments: " + "Title: " + JSON.stringify(data[0].comments[0].title) + "Body: " + JSON.stringify(data[0].comments[0].body) + "</p>");
+                // //link
+                $("#saved").append("<p>Link: " + data[0].link + "</p>");
+                //if article is saved
+                $("#saved").append("<p>Saved: " + data[0].saved + "</p><br>---------------------");
 
-            // //title of the article
-            $("#saved").append("<h2>Saved Articles</h2><br>" + "<p>Title: " + data[0].title + "<p>");
-            // comments
-            $("#saved").append("<p>Comments: " + data[0].comments + "<p>");
-            // //link
-            $("#saved").append("<p>Link: " + data[0].link + "<p>");
-            //if article is saved
-            $("#saved").append("<p>Saved: " + data[0].saved + "<p><br>---------------------");
+            }
         });
+
 });
